@@ -37,17 +37,22 @@ jobs:
 
       - name: "Fake Success"
         run: echo "Fake successful comment"
+      
+
 
   docker-build:
     needs: test
     runs-on: ubuntu-latest
+    env:
+      API_KEY = ${{secrets.API_KEY}}
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
         run: docker build -t myapp:V0.2 .
       
       - name: Run Container
-        run: docker run -d -p 5000:5000 --name prod-container myapp:V0.2
+        run: docker run -d -p 5000:5000 -e API_KEY=$API_KEY --name prod-container myapp:V0.2
+      
 
       - name: "Access the website"
         run: |
