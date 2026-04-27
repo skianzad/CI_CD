@@ -1,9 +1,13 @@
-from app import greet
+from app import app
 
 
-def test_greet_default():
-    assert greet() == "Hello, world!"
+def test_home_status_code():
+    client = app.test_client()
+    response = client.get("/")
+    assert response.status_code == 200
 
 
-def test_greet_name():
-    assert greet("CI") == "Hello, CI!"
+def test_home_response_text():
+    client = app.test_client()
+    response = client.get("/")
+    assert response.get_data(as_text=True) == "CI/CD is running"
