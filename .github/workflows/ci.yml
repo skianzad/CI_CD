@@ -38,6 +38,9 @@ jobs:
       - name: Run tests
         run: python -m pytest tests
 
+      - name: "Fake Success"
+        run: echo "Fake successful comment"
+
   docker-build:
     needs: test
     runs-on: ubuntu-latest
