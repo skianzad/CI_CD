@@ -49,14 +49,14 @@ jobs:
       - name: Run Container
         run: docker run -d -p 5000:5000 --name prod-container myapp:V0.2
 
-      - name: "Access the wbsite"
+      - name: "Access the website"
         run: |
-          for i in {1...10}; do
-            if curl -s http//localhost:5000; then
+          for i in {1..10}; do
+            if curl -s http://localhost:5000; then
               echo "App is up and running"
               exit 0
             fi
-            echo "Wating for the APP ..."
+            echo "Waiting for the APP ..."
             sleep 2
           done
 
