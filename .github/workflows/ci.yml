@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main
+      - dev
   pull_request:
     branches: [ main ]
 
@@ -15,6 +17,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: List Files
+        run : ls - la
+
+      - name: Echo Message
+        run : echo "Pipeline is working."
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
