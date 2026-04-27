@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    paths:
+      - '02-ci-cd-build-and-test/**'
     branches: 
       - main
       - dev
@@ -42,5 +44,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build Docker image
-        run: |
-          docker build -t myapp:latest .
+        run: docker build -t myapp:V0.2 .
+      
+      - name: Run Container
+        run: docker run -d -p 5000:5000 --name prod-container myapp:V0.2
