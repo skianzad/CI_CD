@@ -62,6 +62,9 @@ jobs:
 
           echo "App failed to start"
           exit 1
+      - name: "Real System Health Check"
+        run: curl -f http://localhost:5000
+
       - name: Clear the Container
         if: always()
         run: docker stop prod-container && docker rm prod-container
