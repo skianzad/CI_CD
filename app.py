@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def home():
     # raise Exception("Internal error just for testing")
-    return "Hello, World!"
+    return "CI/CD is running"
 
 @app.route("/health")
 def health():
