@@ -53,7 +53,9 @@ jobs:
       - name: Run Container
         run: docker run -d -p 5000:5000 -e API_KEY=$API_KEY --name prod-container myapp:V0.2
       
-
+      - name: Show Logs
+        run : docker logs prod-container
+        
       - name: "Access the website"
         run: |
           for i in {1..10}; do
