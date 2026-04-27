@@ -20,8 +20,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: List Files
-        run : ls - la
+      - name: List files
+        run: ls -la
 
       - name: Echo Message
         run : echo "Pipeline is working."
