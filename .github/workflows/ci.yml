@@ -48,3 +48,21 @@ jobs:
       
       - name: Run Container
         run: docker run -d -p 5000:5000 --name prod-container myapp:V0.2
+
+      - name: "Access the wbsite"
+        run: |
+          for i in {1...10}; do
+            if curl -s http//localhost:5000; then
+              echo "App is up and running"
+              exit 0
+            fi
+            echo "Wating for the APP ..."
+            sleep 2
+          done
+
+          echo "App failed to start"
+          exit 1
+      - name: Clear the Container
+        if: always()
+        run: docker stop prod-container && docker rm prod-container
+
